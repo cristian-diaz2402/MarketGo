@@ -1,0 +1,28 @@
+/* Estilo para el input */
+input[type=text] {
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* Estilo para el botón */
+  button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  /* Canvas para el CAPTCHA */
+  canvas {
+    /* Prevenir interacción con el canvas */
+    pointer-events: none;
+    border: 1px solid #ccc; /* Agregar un borde para mayor visibilidad */
+    margin-bottom: 10px; /* Separación del campo de entrada */
+  }
+  

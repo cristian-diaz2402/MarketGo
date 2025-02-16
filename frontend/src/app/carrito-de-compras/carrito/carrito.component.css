@@ -1,0 +1,396 @@
+.cart-container {
+  font-family: Arial, sans-serif;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-top: 80px;
+}
+
+.cart-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto;
+  max-height: 500px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.item-image img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.item-details {
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+.item-details h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+/* Estilo para la casilla y botones de edición */
+.edit-window {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f4;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.quantity-control button {
+  padding: 10px;
+  background-color: orange; /* Naranja para los botones redondos */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 10px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-control input {
+  width: 60px;
+  text-align: center;
+  font-size: 16px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  pointer-events: none; /* Deshabilitar edición desde la caja */
+  background-color: #e9ecef; /* Color gris claro para indicar deshabilitado */
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.action-buttons button {
+  margin: 0 10px;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.action-buttons button:first-child {
+  background-color: #28a745; /* Verde para Guardar */
+  color: white;
+}
+
+.action-buttons button:nth-child(2) {
+  background-color: #dc3545; /* Rojo para Descartar */
+  color: white;
+}
+
+.action-buttons button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.remove-item {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.item-price {
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.cart-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+
+.summary-list {
+  list-style: none; /* Elimina los puntos de la lista */
+  padding: 0;
+  margin: 0;
+}
+
+.summary-list li {
+  display: flex;
+  justify-content: space-between; /* Espacia los textos a los lados */
+  font-size: 1.2rem; /* Aumenta un poco el tamaño */
+  margin-bottom: 10px; /* Espacio entre cada fila */
+}
+
+.summary-list li span {
+  font-weight: bold; /* Destaca los textos */
+}
+
+.summary-list li:last-child {
+  font-size: 1.4rem; /* Tamaño más grande para el total */
+  color: #4CAF50; /* Color verde para destacar el total */
+}
+
+.total span {
+  font-weight: bold;
+}
+
+.checkout-button {
+  font-family: Arial, sans-serif;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.checkout-button:hover {
+  background-color: #45a049;
+}
+
+.checkout-button:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+.checkout-button2 {
+  font-family: Arial, sans-serif;
+  padding: 10px 20px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.checkout-button2:hover {
+  background-color: #970000;
+}
+
+.checkout-button2:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+/* Mejora del diseño de las ventanas emergentes */
+.confirmation-popup, .confirmation-discard-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  color: #333;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 300px;
+  z-index: 1000;
+  /* Añadimos un borde en la parte superior */
+  border-top: 30px solid orange;
+}
+
+.confirmation-popup button, .confirmation-discard-popup button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.confirmation-popup button {
+  background-color: #5fd963;
+  color: white;
+}
+
+.confirmation-discard-popup button:nth-child(1) {
+  background-color: #5fd963;
+  color: white;
+  margin-right: 10px;
+}
+
+.confirmation-discard-popup button:nth-child(2) {
+  background-color: green;
+  color: white;
+}
+
+.confirmation-popup p, .confirmation-discard-popup p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.edit-remove-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre la información y los botones */
+}
+
+.item-info {
+  font-size: 0.9rem; /* Tamaño más pequeño para el texto */
+  color: #555; /* Color gris para resaltar menos */
+}
+
+.item-units,
+.item-price-unit {
+  margin-right: 10px; /* Espaciado entre los textos */
+}
+
+.remove-item {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.modal {
+  font-family: Arial, sans-serif;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  border-radius: 8px;
+  animation: slideDown 0.3s ease-in-out;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  z-index: 999; /* Asegura que esté por encima del resto del contenido */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.modal-header {
+  font-family: Arial, sans-serif;
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 8px;
+}
+
+.modal-content p {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.btnSI {
+  margin-inline: 45px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #5fd963;
+}
+
+.btnNO {
+  margin-inline-start: 25px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+  background-color: #bc2232;
+}
+
+/* Animación de entrada */
+@keyframes slideDown {
+  from {
+    transform: translate(-50%, -60%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+
+.notification {
+  position: fixed;
+  font-family: Arial, sans-serif;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background-color: #1cb24b; /* Color de fondo */
+  color: white; /* Color del texto */
+  padding: 10px 20px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
+  font-size: 14px; /* Tamaño de letra */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra */
+  display: none; /* Oculto por defecto */
+}
+
+.notification.visible {
+  display: block;
+  animation: fade-in-out 3s; /* Animación para aparecer y desaparecer */
+}
+
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

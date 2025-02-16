@@ -1,0 +1,90 @@
+/* Estilos para el modal de notificaciones */
+.modal {
+    display: none;
+    position: absolute;
+    z-index: 1001; /* Asegúrate de que esté por encima de la barra de administración */
+    top: 50px; /* Ajusta según la posición del botón de notificaciones */
+    right: 10px; /* Apegado al borde derecho */
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .modal.open {
+    display: block;
+  }
+  
+  @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  }
+  
+  .modal-content {
+    padding: 15px;
+  }
+  
+  .modal-content h3 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  li.leida {
+    color: #888; /* Color para notificaciones leídas */
+  }
+  
+  li:last-child {
+    border-bottom: none;
+  }
+
+  /* Asegúrate de que el botón tenga estilos que lo hagan visible */
+  button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+
+  /* Agregar scroll cuando haya muchas notificaciones */
+.notificaciones-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Estilo del botón eliminar */
+.eliminar-btn {
+  background-color: #d9534f;
+}
+
+.eliminar-btn:hover {
+  background-color: #c9302c;
+}

@@ -1,0 +1,180 @@
+<div class="container">
+  <header class="header">
+    <h1>RESUMEN DE PEDIDO</h1>
+  </header>
+
+  <div class="main-content">
+    <div id="notification" class="notification">
+      <!-- Aquí aparecerán las notificaciones -->
+    </div>
+    <div class="left-section">
+      <div class="form-section">
+        <h2>Datos del Cliente</h2>
+        <form (ngSubmit)="submitForm()" #clienteForm="ngForm">
+          <!-- Nombre -->
+          <div class="form-group">
+            <div class="input-container">
+              <input type="text" placeholder="Nombres y Apellidos" name="nombre" [(ngModel)]="datosCliente.nombre"
+                #nombre="ngModel" (ngModelChange)="validarDatos()" [class.valid]="esValido('nombre')"
+                [class.invalid]="esInvalido('nombre')" required />
+              <span class="validation-icon" [class.valid]="esValido('nombre')" [class.invalid]="esInvalido('nombre')">
+                <i class="fas" [class.fa-check-circle]="esValido('nombre')"
+                  [class.fa-times-circle]="esInvalido('nombre')"></i>
+              </span>
+            </div>
+            <div class="error" *ngIf="errores.nombre">{{ errores.nombre }}</div>
+          </div>
+
+          <!-- Correo -->
+          <div class="form-group">
+            <div class="input-container">
+              <input type="email" placeholder="Correo Electrónico" name="correo" [(ngModel)]="datosCliente.correo"
+                #correo="ngModel" (ngModelChange)="validarDatos()" [class.valid]="esValido('correo')"
+                [class.invalid]="esInvalido('correo')" required />
+              <span class="validation-icon" [class.valid]="esValido('correo')" [class.invalid]="esInvalido('correo')">
+                <i class="fas" [class.fa-check-circle]="esValido('correo')"
+                  [class.fa-times-circle]="esInvalido('correo')"></i>
+              </span>
+            </div>
+            <div class="error" *ngIf="errores.correo">{{ errores.correo }}</div>
+          </div>
+
+          <!-- Teléfono -->
+          <div class="form-group">
+            <div class="input-container">
+              <input type="tel" placeholder="Número de Teléfono" name="telefono" [(ngModel)]="datosCliente.telefono"
+                #telefono="ngModel" (ngModelChange)="validarDatos()" [class.valid]="esValido('telefono')"
+                [class.invalid]="esInvalido('telefono')" required />
+              <span class="validation-icon" [class.valid]="esValido('telefono')"
+                [class.invalid]="esInvalido('telefono')">
+                <i class="fas" [class.fa-check-circle]="esValido('telefono')"
+                  [class.fa-times-circle]="esInvalido('telefono')"></i>
+              </span>
+            </div>
+            <div class="error" *ngIf="errores.telefono">{{ errores.telefono }}</div>
+          </div>
+
+          <!-- Dirección -->
+          <div class="form-group">
+            <div class="input-container">
+              <input
+                type="text"
+                placeholder="Dirección"
+                name="direccion"
+                [(ngModel)]="datosCliente.direccion"
+                (focus)="toggleMapa()"
+                required
+              />
+              <span class="validation-icon" [class.valid]="esValido('direccion')" [class.invalid]="esInvalido('direccion')">
+                <i class="fas" [class.fa-check-circle]="esValido('direccion')" [class.fa-times-circle]="esInvalido('direccion')"></i>
+              </span>
+            </div>
+          </div>
+          
+          <div *ngIf="mostrarMapa" class="map-overlay">
+            <div class="map-container">
+              <input id="pac-input" #searchBox class="controls" type="text" placeholder="Buscar ubicación" />
+              <div #mapContainer id="map"></div>
+              <button class="close-btn" (click)="cerrarMapa()">Cerrar</button>
+            </div>
+          </div>
+          
+
+          <!-- Cédula -->
+          <div class="form-group">
+            <div class="input-container">
+              <input type="text" placeholder="Número de Cédula" name="cedula" [(ngModel)]="datosCliente.cedula"
+                #cedula="ngModel" (ngModelChange)="validarDatos()" [class.valid]="esValido('cedula')"
+                [class.invalid]="esInvalido('cedula')" required />
+              <span class="validation-icon" [class.valid]="esValido('cedula')" [class.invalid]="esInvalido('cedula')">
+                <i class="fas" [class.fa-check-circle]="esValido('cedula')"
+                  [class.fa-times-circle]="esInvalido('cedula')"></i>
+              </span>
+            </div>
+            <div class="error" *ngIf="errores.cedula">{{ errores.cedula }}</div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Método de Pago -->
+      <div class="payment-method">
+        <label for="payment-options">Método de Pago:</label>
+        <select id="payment-options" (change)="onPaymentMethodChange($event)">
+          <option value="" disabled selected>Seleccionar Método de Pago</option>
+          <option value="credit-card">Tarjeta de Crédito</option>
+          <option value="debit-card">Tarjeta de Débito</option>
+          <option value="cash">Efectivo</option>
+          <option value="paypal">PayPal</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Columna derecha: Lista de productos y resumen -->
+    <div class="right-section">
+      <!-- Lista de productos -->
+      <div class="product-list">
+        <h2>Productos</h2>
+        <div class="product-item" *ngFor="let item of cartItems; let i = index">
+          <div class="product-info">
+            <span>Producto:</span>
+            <label id="nombre-producto-{{i + 1}}">{{ item.nombre }}</label>
+            <span>Unidades:</span>
+            <label id="cantidad-producto-{{i + 1}}">{{ item.quantity }}</label>
+          </div>
+          <div class="product-prices">
+            <span>Precio Unitario:</span>
+            <label id="precio-unitario-{{i + 1}}">{{ item.precio | number:'1.2-2' }}</label>
+            <span>Precio sin IVA:</span>
+            <label id="precio-sin-iva-{{i + 1}}">${{ item.subtotal.toFixed(2) }}</label>
+            <span>Precio con IVA:</span>
+            <label id="precio-con-iva-{{i + 1}}">${{ item.total.toFixed(2) }}</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resumen de precios -->
+      <div class="summary">
+        <h2>Resumen de Precios</h2>
+        <div class="summary-item">
+          <span>Total sin IVA:</span>
+          <label id="total-sin-iva">${{ cartSummary.subtotal.toFixed(2) }}</label>
+        </div>
+        <div class="summary-item">
+          <span>15% IVA:</span>
+          <label id="iva">${{ cartSummary.iva.toFixed(2) }}</label>
+        </div>        
+        <div class="summary-item">
+          <span>Total con IVA:</span>
+          <label id="total-con-iva">${{ cartSummary.total.toFixed(2) }}</label>
+        </div>
+      </div>
+    </div>
+
+
+  <!-- Botones -->
+  <div class="buttons">
+    <button class="cart-btn" (click)="mostrarVentanaEmergente2()">Regresar al Carrito</button>
+    <button type="submit" [disabled]="!confirmar" class="cart-btn" (click)="mostrarVentanaEmergente()">Confirmar Pedido</button>
+  </div>
+</div>
+
+<!-- Ventana emergente -->
+<div id="popup-confirmation" class="popup" *ngIf="mostrarPopup">
+  <div class="popup-content">
+    <p>¿Está seguro que desea continuar con el pago del pedido?</p>
+    <div class="popup-buttons">
+      <button (click)="confirmarAccion()">Continuar</button>
+      <button (click)="cancelarAccion()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<div id="popup-confirmation" class="popup" *ngIf="mostrarPopup2">
+  <div class="popup-content">
+    <p>Sus datos no se guardaran, ¿Desea regresar al carrito?</p>
+    <div class="popup-buttons">
+      <button (click)="confirmarAccion2()">Continuar</button>
+      <button (click)="cancelarAccion2()">Cancelar</button>
+    </div>
+  </div>
+</div>

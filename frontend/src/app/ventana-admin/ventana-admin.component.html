@@ -1,0 +1,93 @@
+<div class="admin-wrapper">
+  <div class="admin-container">
+      <div class="admin-header">
+          <h2>Ventana de administradores</h2>
+      </div>
+      <div class="admin-content">
+          <form [formGroup]="adminForm" (ngSubmit)="onSubmit()">
+              <div class="grid-form">
+
+                  <!-- Barra de búsqueda -->
+                  <div class="form-field full-width">
+                      <label for="search">Buscar administrador</label>
+                      <div class="input-container">
+                          <input id="search" type="text" formControlName="search" placeholder="Buscar correo"
+                              (input)="onSearchChange()">
+                          <button type="button" class="search-btn" (click)="searchAdmin()">
+                              <i class="fas fa-search"></i> <!-- Ícono de lupa -->
+                          </button>
+                          <span *ngIf="adminForm.get('search')?.invalid && adminForm.get('search')?.touched"
+                              class="icon error-icon">✘</span>
+                          <span *ngIf="adminForm.get('search')?.valid" class="icon success-icon">✔</span>
+                      </div>
+
+                      <!-- Mensaje si el admin no existe -->
+                      <div *ngIf="!isAdminFound && isSearchActive" class="join-message-wrapper">
+                          <div class="join-message">
+                              <p>¿Deseas unirte a MarketGo?</p>
+                              <button class="btn-add show" type="button" (click)="onInviteClick()">Invitar</button>
+                          </div>
+                      </div>
+
+                      <div *ngIf="adminForm.get('search')?.invalid && adminForm.get('search')?.touched">
+                          <small class="error">La búsqueda es obligatoria.</small>
+                      </div>
+                  </div>
+
+                  <!-- Campos de nombre y correo solo visibles si admin existe -->
+                  <div *ngIf="isAdminFound">
+                      <!-- Campo de nombre -->
+                      <div class="form-field">
+                          <label for="name">Nombre</label>
+                          <div class="input-container">
+                              <input id="name" type="text" formControlName="name" [disabled]="!isAdminFound">
+                          </div>
+                      </div>
+
+                      <!-- Campo de correo electrónico -->
+                      <div class="form-field">
+                          <label for="email">Correo electrónico</label>
+                          <div class="input-container">
+                              <input id="email" type="email" formControlName="email" [disabled]="!isAdminFound">
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+
+              <!-- Modal de confirmación -->
+              <div *ngIf="showConfirmation" class="modal-overlay">
+                  <div class="modal">
+                      <h3>¿Estás seguro de agregar este administrador?</h3>
+                      <div class="modal-actions">
+                          <button class="btn-confirm" (click)="onConfirmAdd()">Sí</button>
+                          <button class="btn-cancel" (click)="onCancelAdd()">Cancelar</button>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Botón para regresar -->
+              <button class="btn-back" type="button" (click)="onBackClick()">
+                <i class="fas fa-arrow-left"></i> Regresar
+              </button>             
+
+              <!-- Tu formulario sigue aquí -->
+              <div class="admin-footer">
+                  <button class="btn-cancel" type="button" (click)="onCancelClick()">
+                      <i class="fas fa-times"></i> Deshacer
+                  </button>
+                  <button class="btn-save" type="button" (click)="openConfirmationDialog()"
+                      [disabled]="adminForm.invalid || !canAddAdmin">
+                      <i class="fas fa-save"></i> Agregar
+                  </button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+  
+  
+  
+  
+  

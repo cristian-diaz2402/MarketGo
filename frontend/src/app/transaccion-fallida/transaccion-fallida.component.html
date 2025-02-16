@@ -1,0 +1,9 @@
+<div class="transaccion-fallida">
+  <h1>Transacción Cancelada</h1>
+  <p>No se pudo completar la transacción, el dinero no ha sido debitado de su cuenta</p>
+  <p>El stock de los siguientes productos se encuentra agotado, mil disculpas:</p>
+  <ul>
+    <li *ngFor="let producto of productosSinStock">{{ producto }}</li>
+  </ul>
+  <button class="inicio-button" (click)="irInicio()">INICIO</button>
+</div>

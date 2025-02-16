@@ -1,0 +1,32 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-logo">
+      <img src="assets/imagenes/logomarket.png" width="70px" alt="Logo de Market Go" class="logo">
+    </div>
+    <div class="navbar-links">
+      <app-barra-de-busqueda></app-barra-de-busqueda>
+      <button class="navbar-button" (click)="irInicio()">Inicio</button>
+      <button class="navbar-button" (click)="irCatalogo()">Catálogo</button>
+      <button class="navbar-button" (click)="irNosotros()">Nosotros</button>
+    </div>
+    <div class="navbar-profile">
+      <button class="navbar-button notification-bell" (click)="abrirNotificaciones()">
+        <img src="assets/imagenes/campana.png" alt="Notificaciones" class="notification-icon">
+        <span *ngIf="notificacionesNoLeidas > 0" class="notification-count">{{notificacionesNoLeidas}}</span>
+        <app-notificaciones-modal 
+  #notificacionesModal 
+  [notificaciones]="notificaciones" 
+  (actualizarContador)="actualizarContador($event)">
+</app-notificaciones-modal>
+
+      </button>
+      <button class="navbar-button" (click)="abrirModalPerfil()">
+        <img src="assets/imagenes/perfil.png" alt="Perfil" style="height: 30px;">
+        <app-modal #perfilModal></app-modal>
+      </button>
+      <button class="navbar-button" (click)="irAlCarrito()">
+        <img src="assets/imagenes/car shop.png" alt="Car Shop" style="height: 30px;">
+      </button>      
+    </div>
+  </div>
+</nav>

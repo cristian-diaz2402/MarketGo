@@ -1,0 +1,20 @@
+<div class="slider">
+    <div class="list">
+      <!-- Solo muestra la imagen activa -->
+      <div class="item" *ngFor="let image of images; let i = index">
+        <img [src]="image" *ngIf="i === activeIndex" alt="">
+      </div>
+    </div>
+  
+    <div class="buttons">
+      <button (click)="prev()">&#60;</button>
+      <button (click)="next()">&#62;</button>
+    </div>
+  
+    <ul class="dots">
+      <li *ngFor="let dot of dots; let i = index"
+          [class.active]="i === activeIndex"
+          (click)="setActive(i)"></li>
+    </ul>
+  </div>
+  

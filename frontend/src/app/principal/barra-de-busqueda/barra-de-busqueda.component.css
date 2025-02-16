@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: black;
+    font-family: Arial, sans-serif; /* Añado una fuente básica */
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    padding: 5px;
+}
+
+input {
+    outline: none;
+    box-sizing: border-box;
+    height: 40px;
+    width: 0px;
+    padding: 0 10px;
+    color: #000;
+    border-radius: 25px;
+    font-size: 16px;
+    border: 1px solid #D50000;
+    transition: all 0.7s ease;
+}
+
+::placeholder {
+    color: grey;
+}
+
+.btn {
+    position: absolute;
+    right: 0px; /* Ajustado para coincidir con el diseño */
+    top: px;
+    width: 50px; /* Reducido para adaptarse mejor al diseño */
+    height: 50px;
+    background: #fc6602;
+    line-height: 40px;
+    border-radius: 60%;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+}
+
+.btn svg {
+    fill: white; /* Color del ícono */
+    width: 20px; /* Tamaño del ícono */
+    height: 20px;
+    transition: all 0.7s ease;
+}
+
+.container:hover input {
+    width: 200px;
+}
+
+.container:hover .btn svg {
+    transform: rotate(-360deg);
+}
+
+.btn:hover {
+    background: #cc0000;
+}
+
+/* Estilos para las sugerencias */
+.suggestions {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    z-index: 1000;
+    border-radius: 5px; /* Bordes redondeados para las sugerencias */
+}
+
+.suggestions li {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.suggestions li:hover {
+    background-color: #f0f0f0;
+}
+
+
+

@@ -1,0 +1,131 @@
+.admin-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 100%;  
+}
+
+.admin-container h2 {
+  background-color: #f0660a;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  border-radius: 8px 8px 0 0;
+  margin: -20px -20px 20px -20px;
+  position: relative;
+}
+
+.add-user-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 10px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s ease, position 0.3s ease, transform 0.3s ease, top 0.3s ease;
+  
+  @media (max-width: 768px) {
+    position: static; /* Cambia de posición absoluta a estática en pantallas pequeñas */
+    transform: translateY(0);
+    top: auto;
+    margin-top: 10px; /* Añade un margen superior para separarlo del enunciado */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    text-align: center; /* Centra el texto del botón */
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 12px;
+    padding: 8px 8px;
+  }
+}
+
+.add-user-button:hover {
+  background-color: #218838;
+}
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: white;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  flex-wrap: wrap;
+}
+
+.user-details {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.user-details div {
+  margin-bottom: 5px;
+  word-wrap: break-word;
+}
+
+.user-details div strong {
+  color: #212529;
+}
+
+.user-details select {
+  padding: 5px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background-color: #e9ecef;
+  width: 100%; 
+  max-width: 100%; 
+}
+
+.delete-button {
+  background-color: red;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  @media (max-width: 480px) {
+    padding: 4px 8px; 
+    font-size: 12px; 
+  }
+}
+
+.return-button {
+  margin: 20px auto 0;
+  display: block;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  
+  @media (max-width: 480px) {
+    padding: 8px 10px; 
+    font-size: 12px; 
+    width: 100%; 
+  }
+}
+
+.return-button:hover {
+  background-color: #218838;
+}

@@ -1,0 +1,139 @@
+<div class="notifications">
+  <div *ngFor="let notification of notifications" class="notification">
+    {{ notification }}
+  </div>
+</div>
+<div class="product-edit-wrapper">
+  <div class="product-edit-container">
+    <div class="edit-header">
+      <h2>Agregar productos</h2>
+    </div>
+    <div class="edit-content">
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="grid-form">
+        
+          <div class="form-field">
+            <label for="productName">Nombre del producto</label>
+            <div class="input-container">
+              <input id="productName" type="text" formControlName="productName">
+              <span *ngIf="productForm.get('productName')?.invalid && productForm.get('productName')?.touched" class="icon error-icon">✘</span>
+              <span *ngIf="productForm.get('productName')?.valid" class="icon success-icon">✔</span>
+            </div>
+            <div *ngIf="productForm.get('productName')?.invalid && productForm.get('productName')?.touched">
+              <small class="error">El nombre es obligatorio y debe tener al menos 3 caracteres.</small>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="catalog">Catálogo</label>
+            <div class="input-container">
+              <select id="catalog" class="large-select" formControlName="catalog" (change)="loadProductsFromCatalog()">
+                <option value="" disabled selected>Seleccione un catálogo</option>
+                <option *ngFor="let catalog of validCatalogs" [value]="catalog">{{ catalog }}</option>
+              </select>
+              <span *ngIf="productForm.get('catalog')?.invalid && productForm.get('catalog')?.touched" class="icon error-icon">✘</span>
+              <span *ngIf="productForm.get('catalog')?.valid" class="icon success-icon">✔</span>
+            </div>
+            <div *ngIf="productForm.get('catalog')?.invalid && productForm.get('catalog')?.touched">
+              <small class="error" *ngIf="productForm.get('catalog')?.hasError('invalidCatalog')">Catálogo inválido.</small>
+              <small class="error" *ngIf="productForm.get('catalog')?.hasError('required')">El catálogo es obligatorio.</small>
+            </div>
+          </div>          
+          
+          <div class="form-field">
+            <label for="quantity">Cantidad</label>
+            <div class="input-container">
+              <input id="quantity" type="text" formControlName="quantity">
+              <span *ngIf="productForm.get('quantity')?.invalid && productForm.get('quantity')?.touched" class="icon error-icon">✘</span>
+              <span *ngIf="productForm.get('quantity')?.valid" class="icon success-icon">✔</span>
+            </div>
+            <div *ngIf="productForm.get('quantity')?.invalid && productForm.get('quantity')?.touched">
+              <small class="error">La cantidad debe ser un número válido, por ejemplo: "500 G".</small>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="price">Precio unitario</label>
+            <div class="input-container">
+              <input id="price" type="number" formControlName="price" (input)="onPriceInput($event)">
+              <span *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched" class="icon error-icon">✘</span>
+              <span *ngIf="productForm.get('price')?.valid" class="icon success-icon">✔</span>
+            </div>
+            <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched">
+              <small class="error">El precio debe ser mayor a 0.</small>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="iva">IVA</label>
+            <div class="input-container">
+              <select id="iva" class="large-select" formControlName="iva">
+                <option value="" disabled selected>Seleccione una opción</option>
+                <option value="yes">Sí</option>
+                <option value="no">No</option>
+              </select>
+              <span *ngIf="productForm.get('iva')?.invalid && productForm.get('iva')?.touched" class="icon error-icon">✘</span>
+              <span *ngIf="productForm.get('iva')?.valid" class="icon success-icon">✔</span>
+            </div>
+            <div *ngIf="productForm.get('iva')?.invalid && productForm.get('iva')?.touched">
+              <small class="error">Debe seleccionar una opción.</small>
+            </div>
+          </div>
+          
+          <div class="form-field">
+            <label for="units">Unidades disponibles</label>
+            <div class="input-container">
+              <input id="units" type="number" formControlName="units">
+              <span *ngIf="productForm.get('units')?.invalid && productForm.get('units')?.touched" class="icon error-icon">✘</span>
+              <span *ngIf="productForm.get('units')?.valid" class="icon success-icon">✔</span>
+            </div>
+            <div *ngIf="productForm.get('units')?.invalid && productForm.get('units')?.touched">
+              <small class="error">Las unidades deben ser un número mayor o igual a 0.</small>
+            </div>
+          </div>
+          <div class="form-field full-width">
+            <label for="description">Descripción</label>
+            <div class="input-container">
+              <textarea id="description" rows="2" formControlName="description"></textarea>
+              <span *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.touched" class="icon error-icon">✘</span>
+              <span *ngIf="productForm.get('description')?.valid" class="icon success-icon">✔</span>
+            </div>
+            <div *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.touched">
+              <small class="error">La descripción no debe exceder los 250 caracteres.</small>
+            </div>
+          </div>
+          <div class="form-field full-width">
+            <label for="imageUrl">Imagen</label>
+            <div class="image-input-container">
+              <input id="imageUrl" type="text" formControlName="imageUrl">
+              <button class="btn-upload" type="button">
+                <i class="fas fa-upload"></i>
+              </button>
+              <span *ngIf="productForm.get('imageUrl')?.invalid && productForm.get('imageUrl')?.touched" class="icon error-icon">✘</span>
+              <span *ngIf="productForm.get('imageUrl')?.valid" class="icon success-icon">✔</span>
+            </div>
+            <div *ngIf="productForm.get('imageUrl')?.invalid && productForm.get('imageUrl')?.touched">
+              <small class="error">La URL de la imagen debe ser válida.</small>
+            </div>
+          </div>
+        </div>
+        <div class="edit-footer">
+          <button class="btn-descartar" type="button" (click)="onDiscardClick()">
+            <i class="fas fa-times"></i>
+            Descartar
+          </button>
+          <button class="btn-guardar" type="submit" [disabled]="productForm.invalid">
+            <i class="fas fa-save"></i>
+            Guardar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal" *ngIf="showModal">
+  <div class="modal-content">
+    <h3>{{ modalMessage }}</h3>
+    <div class="modal-buttons">
+      <button (click)="onConfirm()">Sí</button>
+      <button (click)="onCancel()">No</button>
+    </div>
+  </div>
+</div>

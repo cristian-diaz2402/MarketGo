@@ -1,0 +1,53 @@
+<nav class="navbar">
+  <!-- Botón hamburguesa a la izquierda -->
+  <button class="hamburguesa-button" (click)="toggleMenu()">☰</button>
+  <div class="search-container">
+    <app-barra-de-busqueda></app-barra-de-busqueda>
+  </div>
+
+  <!-- Icono de notificaciones y carrito a la derecha -->
+  <div class="navbar-notifications">
+    <button class="notification-button" (click)="abrirNotificaciones()">
+      <img src="assets/imagenes/campana.png" alt="Notificaciones" class="notification-icon">
+      <span *ngIf="notificacionesNoLeidas > 0" class="notification-count">{{notificacionesNoLeidas}}</span>
+      <app-notificaciones-modal 
+  #notificacionesModal 
+  [notificaciones]="notificaciones" 
+  (actualizarContador)="actualizarContador($event)">
+</app-notificaciones-modal>
+
+    </button>
+  </div>
+  <div class="navbar-cart" (click)="irAlCarrito()">
+    <i class="cart-icon">
+      <img src="assets/imagenes/car shop.png" alt="car shop" style="height: 30px;">
+    </i>
+  </div>
+</nav>
+
+<div *ngIf="menuOpen" class="menu">
+  <!-- Información de perfil (de Modal a Menú Hamburguesa) -->
+  <div class="perfil-info">
+    <img [src]="user?.picture" alt="Foto de Perfil" class="perfil-imagen">
+    <h2 class="perfil-nombre">{{ user?.name || 'Nombre de Usuario' }}</h2>
+    <h3 class="perfil-correo">{{ user?.email || 'usuario@example.com' }}</h3>
+  </div>
+
+  <ul>
+    <li>
+      <button (click)="irAlInicio()">Inicio</button>
+    </li>
+    <li>
+      <button (click)="irCatalogo()">Catálogo</button>
+    </li>
+    <li>
+      <button class="navbar-button" (click)="irNosotros()">Nosotros</button>
+    </li>
+    <li>
+      <button *ngIf="user?.rol === 'administrador'" (click)="changeUserRole()" class="navbar-button">Cambiar rol de usuario</button>
+    </li>
+    <li>
+      <button (click)="cerrarSesion()">Cerrar sesión</button>
+    </li>
+  </ul>
+</div>

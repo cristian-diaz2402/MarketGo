@@ -1,0 +1,226 @@
+.pack-section{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0%;
+  }
+  .pack-grig{
+    margin: 20px 0 0 0;
+    padding: 0;
+    list-style: none;
+    display: block;
+    text-align: center;
+    width: 100%;
+    
+  }
+  .pack-grig:after{
+    clear: both;
+  }
+  .pack-grig:after,xop-box:before{
+    content: '';
+    display: table;
+  }
+  .pack-grig li{
+    width: 320px;
+    height: 328px;
+    display: inline-block;
+    margin: 20px;
+  }
+  .pack-box{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    box-shadow: 4px 2px 6px #000;
+    border-radius: 10px;
+    -webkit-transition: 0.3s ease-in-out;
+    -webkit-transform: 0.3s ease-in-out;
+     -moz-transition: 0.3s ease-in-out;
+    -moz-transform: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+    transform: 0.3s ease-in-out;
+  }
+  .pack-box:hover{
+    transform: scale(1.05);
+    box-shadow: 6px 3px 10px #000;
+  }
+  .pack-img-1{
+    background:linear-gradient(rgba(0,0,0,0.50),rgba(0,0,0,0.10)),
+    url('/assets/imagenes/iconoCarnico.avif');
+    background-size: cover;
+  }
+  
+  .pack-img-2{
+    background:linear-gradient(rgba(0,0,0,0.50),rgba(0,0,0,0.10)),
+    url('/assets/imagenes/lacteosIcono.avif');
+    background-size: cover;
+  }
+  .pack-img-3{
+    background:linear-gradient(rgba(0,0,0,0.50),rgba(0,0,0,0.10)),
+    url('/assets/imagenes/verdurasIcono.avif');
+    background-size: cover;
+  }
+  
+  .pack-img-4{
+    background:linear-gradient(rgba(0,0,0,0.50),rgba(0,0,0,0.10)),
+    url('/assets/imagenes/frutasIcono.avif');
+    background-size: cover;
+  }
+  
+  .pack-img-5{
+    background:linear-gradient(rgba(0,0,0,0.50),rgba(0,0,0,0.10)),
+    url('/assets/imagenes/snacksIcono.avif');
+    background-size: cover;
+  }
+  
+  .pack-img-6{
+    background:linear-gradient(rgba(0,0,0,0.50),rgba(0,0,0,0.10)),
+    url('/assets/imagenes/aseoIcono.avif');
+    background-size: cover;
+  }
+
+  .pack-img-7{
+    background:linear-gradient(rgba(0,0,0,0.50),rgba(0,0,0,0.10)),
+    url('/assets/imagenes/limpiezaIcono.avif');
+    background-size: cover;
+  }
+
+  .pack-img-8{
+    background:linear-gradient(rgba(0,0,0,0.50),rgba(0,0,0,0.10)),
+    url('/assets/imagenes/bebidasIcono.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .pack-info{
+    position: absolute;
+    width: inherit;
+    height: inherit;
+  }
+  .pack-info h3{
+    font-family: sans-serif;
+    font-weight: 400;
+    color: #fff;
+    font-weight: bold;
+    font-size: 42px;
+    margin: 150px 0 0;
+    line-height: 1;
+  }
+  .pack-info p{
+    font-family: sans-serif;
+    color: #fff;
+    opacity: 0; 
+    transition: opacity 0.3s ease-in-out; 
+  }
+ 
+  .pack-box:hover .pack-info p {
+    opacity: 1; 
+  }
+  .pack-info button{
+      cursor: pointer;
+      width: 100px;
+    height: 35px;
+    color: #fff;
+    font-size: 16px;
+    background: rgb(11, 130, 11);
+    border: none;
+    border-radius: 13px;
+    box-shadow: 0 2px 3px #000;
+    outline: none;
+    
+  }
+  .pack-info button:hover{
+    background: #ff5349;
+    font-size: 20px;
+     box-shadow: 0 2px 3px #000;
+    width: 120px;
+  }
+  .footer {
+    background-color: black;
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  .footer-content ul {
+    display: flex;
+    justify-content: space-evenly;  /* Distribuye las palabras de manera uniforme */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-content li {
+    margin: 0;
+  }
+
+  .footer-content a {
+    font-family: sans-serif;
+    color: #ffffff;  /* Color gris claro */
+    text-decoration: none;  /* Elimina el subrayado */
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  /* Media Queries */
+@media screen and (max-width: 1200px) {
+  .pack-section {
+      padding: 0 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .pack-grig li {
+      width: calc(50% - 20px);
+      height: 250px;
+  }
+  
+  .pack-info h3 {
+      font-size: 32px;
+      margin: 100px 0 0;
+  }
+  
+  .pack-info p {
+      font-size: 14px;
+      padding: 0 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .pack-grig li {
+      width: 100%;
+      height: 200px;
+  }
+  
+  .pack-info h3 {
+      font-size: 28px;
+      margin: 70px 0 0;
+  }
+  
+  .pack-info button {
+      width: 90px;
+      height: 32px;
+      font-size: 14px;
+  }
+  
+  .pack-info button:hover {
+      width: 100px;
+      font-size: 16px;
+  }
+
+  /* Footer responsive */
+  .footer-content ul {
+      flex-direction: column;
+      gap: 15px;
+  }
+  
+  .footer-content a {
+      font-size: 14px;
+  }
+}
+
+/* Mejoras de rendimiento */
+@media (hover: hover) {
+  .pack-box {
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+}
+ 
+ 

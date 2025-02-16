@@ -1,0 +1,39 @@
+.transaccion-exitosa {
+    text-align: center;
+    padding: 50px;
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .transaccion-exitosa h1 {
+    color: #28a745;
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .transaccion-exitosa p {
+    color: #333;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin: 15px 0;
+  }
+  
+  .inicio-button {
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 1em;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .inicio-button:hover {
+    background-color: #218838;
+  }

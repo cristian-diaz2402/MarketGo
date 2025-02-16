@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MarketGO - Catálogo</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  
+  <app-hamburguesa></app-hamburguesa>
+  <app-barra-navegacion></app-barra-navegacion>
+  <div id="notification" class="notification">
+    <!-- Aquí aparecerán las notificaciones -->
+  </div>
+  
+  <main class="container my-4">
+    <!-- Título del catálogo -->
+    <br>
+    <br>
+    <br>
+    <div class="text-center">
+      <h1 class="catalog-title"><strong>CARNES</strong></h1>
+    </div>
+
+    <div class="container text-center my-4">
+        <button class="btn sort-button me-2" (click)="sortByName()">A-Z | Z-A</button>
+        <button class="btn sort-button" (click)="sortByPrice()">Precio</button>
+    </div>
+
+    <div class="row">
+        <!-- Iteración de productos con *ngFor -->
+        <div *ngFor="let product of products" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+          <div class="card product-card position-relative" (click)="detalleProd(product.nombre)"> <!-- Aquí se redirige -->
+            <button class="cart-button position-absolute top-0 end-0 d-flex align-items-center justify-content-center" (click)="addToCart(product); $event.stopPropagation()">
+              <img src="assets/Carnes/icon.png" alt="Añadir al carrito" class="img-fluid me-2">
+              <span>Añadir</span>
+            </button>
+            <div class="card-body text-center">
+              <div class="product-image-placeholder">
+                <img [src]="product.imagen" alt="{{ product.nombre }}" class="img-fluid">
+              </div>
+              <h5 class="product-name">{{ product.nombre }}</h5>
+              <p class="product-price">${{ product.precio }}</p>
+            </div>
+          </div>
+        </div>        
+    </div>
+
+  </main> <!-- Asegúrate de que esta etiqueta esté cerrada correctamente -->
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+/* Estilos Generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f8;
+    line-height: 1.6;
+    color: #1a1a2e;
+}
+
+/* Contenedor Principal */
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Panel Izquierdo */
+.left-panel {
+    width: 50%;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    transition: all 0.3s ease;
+    border-right: 1px solid #e0e0e0;
+}
+
+.image-box {
+    width: 80%;
+    background-color: #f1f3f5;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.image-box:hover {
+    transform: scale(1.05);
+}
+
+.image-box img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Descripción */
+.description {
+    margin-top: 30px;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.description h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    letter-spacing: -1px;
+}
+
+.description p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #4a4a4a;
+    max-width: 500px;
+}
+
+/* Panel Derecho */
+.right-panel {
+    width: 50%;
+    background-color: #ffffff;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.right-panel h2 {
+    font-size: 4rem;
+    margin-bottom: 40px;
+    text-align: center;
+    color: #2c3e50;
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+.product-details {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 40px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.product-details label {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #34495e;
+}
+
+.data-box {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #e9ecef;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    min-width: 150px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    transition: all 0.3s ease;
+}
+
+.data-box:hover {
+    background-color: #f1f3f5;
+    transform: translateY(-3px);
+}
+
+/* Estilos para el contenedor de unidades con botones de incremento/decremento */
+.units {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    width: 100%;
+    max-width: 400px;
+    margin: 30px auto;
+}
+
+.units-label {
+    font-size: 1.5rem; /* Tamaño similar a las etiquetas en otras partes */
+    font-weight: 600;  /* Igual al peso de las etiquetas */
+    color: #34495e;    /* Color similar al resto de etiquetas */
+    margin-right: 10px; /* Separación con el control de unidades */
+    align-self: center; /* Centrado verticalmente si es necesario */
+}
+
+.units-control {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.units-control button {
+    width: 50px;
+    height: 50px;
+    background-color: #f1f3f5;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #4a90e2;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.units-control button:hover {
+    background-color: #e9ecef;
+}
+
+.units-control button:active {
+    background-color: #dee2e6;
+}
+
+.units-control .unit-input {
+    width: 100px;
+    text-align: center;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+    background-color: white;
+}
+
+.units-control .unit-input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.cart-btn {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 20px;
+    width: 100%;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3);
+}
+
+.cart-btn:hover {
+    background-color: #357abd;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(74, 144, 226, 0.4);
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .product-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .left-panel, .right-panel {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .right-panel h2 {
+        font-size: 2rem;
+    }
+
+    .product-details label {
+        font-size: 1rem;
+    }
+
+    .cart-btn {
+        font-size: 1rem;
+    }
+
+    .units-control button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .units-control .unit-input {
+        width: 80px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .product-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .left-panel, .right-panel {
+        width: 100%;
+        padding: 25px;
+    }
+}
+.notification {
+    position: fixed;
+    font-family: Arial, sans-serif;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background-color: #1cb24b; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 14px; /* Tamaño de letra */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra */
+    display: none; /* Oculto por defecto */
+  }
+  
+  .notification.visible {
+    display: block;
+    animation: fade-in-out 3s; /* Animación para aparecer y desaparecer */
+  }

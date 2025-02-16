@@ -1,0 +1,90 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Altura de la ventana completa */
+  margin: 0; /* Elimina márgenes predeterminados */
+}
+
+.slider {
+  width: 80vw; /* Ocupa el 80% del ancho de la página */
+  max-width: 1300px; /* Ancho máximo para el carrusel */
+  height: 700px;
+  margin: 85px auto 0; /* Margen superior ajustado */
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.slider .list {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  transition: 1s ease;
+}
+
+.slider .list img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ajusta la imagen al tamaño del contenedor manteniendo la proporción */
+}
+
+.slider .buttons {
+  position: absolute;
+  top: 45%;
+  left: 5%;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.slider .buttons button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #fff5;
+  color: #141313;
+  border: none;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.slider .dots {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.slider .dots li {
+  list-style: none;
+  width: 10px;
+  height: 10px;
+  background-color: #807979;
+  margin: 10px;
+  border-radius: 50%;
+  transition: 0.5s;
+}
+
+.slider .dots li.active {
+  width: 30px;
+}
+
+/* Para pantallas menores a 768px */
+@media screen and (max-width: 768px) {
+  .slider {
+    width: 90vw; /* Ajusta el ancho en pantallas más pequeñas */
+    height: 400px;
+  }
+
+  .slider .list img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen llene el espacio disponible */
+  }
+}

@@ -1,0 +1,46 @@
+<nav class="navbar-admin">
+  <div class="navbar-container">
+    <div class="navbar-logo">
+      <img src="assets/imagenes/logomarket.png" width="70px" alt="Logo de Market Go" class="logo">
+    </div>
+    <h1 class="navbar-title">Gestión de Inventario</h1>
+    <div class="navbar-notifications">
+      <button class="notification-button" (click)="abrirNotificaciones()">
+        <img src="assets/imagenes/campana.png" alt="Notificaciones" class="notification-icon">
+        <span *ngIf="notificacionesNoLeidas > 0" class="notification-count">{{notificacionesNoLeidas}}</span>
+      </button>
+      <app-notificaciones-modal 
+  #notificacionesModal 
+  [notificaciones]="notificaciones" 
+  (actualizarContador)="actualizarContador($event)">
+</app-notificaciones-modal>
+
+      
+    </div>
+    <div class="navbar-profile">
+      <button class="navbar-button" (click)="abrirModalPerfil()">
+        <img src="assets/imagenes/perfil.png" alt="Perfil" style="height: 30px;">
+        <app-modal #perfilModal></app-modal>
+      </button>
+    </div>
+    <button class="hamburger-menu" (click)="toggleMenu()">☰</button>
+    <button class="gestion-roles-button desktop-only" (click)="navegarAGestionRoles()">Gestión de Usuarios</button>
+    <!-- Contenido del menú hamburguesa -->
+    <div class="hamburger-content" [ngClass]="{'open': isMenuOpen}">
+      <div class="perfil-header">
+        <img [src]="perfilModal.user?.picture" alt="Foto de Perfil" class="perfil-imagen">
+        <h2 class="perfil-nombre">{{ perfilModal.user?.name || 'Nombre de Usuario' }}</h2>
+        <h2 class="perfil-correo">{{ perfilModal.user?.email || 'usuario@example.com' }}</h2>
+      </div>
+      <div class="perfil-opciones">
+        <button class="notification-button mobile-only" (click)="abrirNotificaciones()">
+          <img src="assets/imagenes/campana.png" alt="Notificaciones" class="notification-icon">
+          <span *ngIf="notificacionesNoLeidas > 0" class="notification-count">{{notificacionesNoLeidas}}</span>
+        </button>
+        <button class="gestion-roles-button mobile-only" (click)="navegarAGestionRoles()">Gestión de Usuarios</button>
+        <button *ngIf="perfilModal.user?.rol === 'administrador'" (click)="changeUserRole()" class="cambiar-rol">Cambiar rol de usuario</button>
+        <button (click)="perfilModal.closeModalAndLogout()" class="cerrar-sesion">Cerrar Sesión</button>
+      </div>
+    </div>
+  </div>
+</nav>

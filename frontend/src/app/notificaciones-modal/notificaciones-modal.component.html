@@ -1,0 +1,16 @@
+<div class="modal" [class.open]="isModalOpen" (mouseleave)="closeModal()">
+  <div class="modal-content">
+    <h3>Notificaciones</h3>
+    <ul class="notificaciones-list">
+      <li *ngFor="let notificacion of notificaciones" 
+          [class.leida]="notificacion.leido" 
+          (click)="marcarLeida(notificacion)">
+        <span [style.fontWeight]="!notificacion.leido ? 'bold' : 'normal'">
+          El producto {{ notificacion.producto }} no cuenta con unidades disponibles
+        </span>
+      </li>
+    </ul>
+    <button (click)="marcarTodasComoLeidas()">Marcar como leídas</button>
+    <button class="eliminar-btn" (click)="eliminarNotificaciones()">Eliminar notificaciones</button>
+  </div>
+</div>

@@ -1,0 +1,328 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+ 
+.product-edit-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #f3f4f6;
+  box-sizing: border-box;
+}
+
+.product-edit-container {
+  flex: 1;
+  max-width: 1200px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-header {
+  padding: 2rem;
+  background: linear-gradient(1deg, #ff8800, #f0660a);
+  color: white;
+  text-align: center;
+  border-bottom: 2px solid #e2e8f0;
+  font-family: Arial, sans-serif;
+}
+
+.edit-header h2 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.edit-content {
+  padding: 2rem;
+  flex: 1;
+  overflow-y: auto;
+  font-family: Arial, sans-serif;
+}
+
+.grid-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Añadido para posicionar ícono de validación */
+}
+
+.form-field label {
+  margin-bottom: 0.5rem;
+  color: #2d3748;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 80%;
+  padding: 1rem;
+  padding-right: 2.5rem; /* Espacio para ícono de validación */
+  border: 1px solid #cbd5e0;
+  border-radius: 12px;
+  background-color: #edf2f7;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  resize: none;
+}
+
+.form-field select {
+  width: 90%;
+  padding: 1rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 12px;
+  background-color: #edf2f7;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M1 4l5 5 5-5' fill='none' stroke='%23666' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+}
+
+.form-field select:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+}
+
+/* Estados de validación */
+.form-field input.invalid,
+.form-field textarea.invalid {
+  border-color: #e53e3e;
+  background-color: #fff5f5;
+}
+
+.form-field input.valid,
+.form-field textarea.valid {
+  border-color: #38a169;
+  background-color: #e6f4ea;
+}
+
+.error-message {
+  color: #e53e3e;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block; /* Forzar visibilidad */
+  opacity: 1; /* Asegurar opacidad */
+}
+
+.form-field.invalid .error-message {
+  display: block;
+}
+
+.image-input-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.image-input-container input {
+  flex: 1;
+}
+
+.image-input-container .btn-upload {
+  padding: 1rem;
+  background-color: #e2e8f0;
+  border: none;
+  border-radius: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.image-input-container .btn-upload:hover {
+  background-color: #cbd5e0;
+  transform: translateY(-2px);
+}
+
+.edit-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem; /* Espaciado entre los botones */
+  padding: 2rem;
+  background-color: #f7fafc;
+  border-top: 1px solid #e2e8f0;
+}
+
+.edit-footer .btn-descartar,
+.edit-footer .btn-guardar {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.edit-footer .btn-guardar {
+  background-color: #38a169;
+  color: white;
+}
+
+.edit-footer .btn-guardar:hover {
+  background-color: #2f855a;
+}
+
+.edit-footer .btn-descartar {
+  background-color: #e53e3e;
+  color: white;
+}
+
+.edit-footer .btn-descartar:hover {
+  background-color: #c53030;
+}
+
+/* Ajustes para la desactivación del botón "Guardar" */
+.edit-footer .btn-guardar:disabled {
+  background-color: #cbd5e0;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal.show {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+  width: 90%;
+  transform: scale(0.7);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.modal.show .modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.modal p {
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn-cancelar, .btn-confirmar {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-cancelar {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.btn-cancelar:hover {
+  background-color: #e0e0e0;
+}
+
+.btn-confirmar {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.btn-confirmar:hover {
+  background-color: #e63939;
+}
+
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .product-edit-wrapper {
+    padding: 1.5rem;
+  }
+
+  .edit-content {
+    padding: 1.5rem;
+  }
+
+  .grid-form {
+    grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
+  }
+
+  .edit-footer {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .edit-footer button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .edit-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .form-field label {
+    font-size: 0.875rem;
+  }
+}
+
+/* Agregado para ocultar los spinners en campos de tipo "number" */
+
+/* Oculta los spinners en navegadores basados en WebKit (Chrome, Edge, Safari) */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Oculta los spinners en Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+  
+  

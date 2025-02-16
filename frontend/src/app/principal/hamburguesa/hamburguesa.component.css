@@ -1,0 +1,160 @@
+/* Estilos generales para la barra de navegación */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 92%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: orange;
+  border-bottom: 1px solid #ddd;
+  padding: 0 20px;
+  z-index: 1000;
+}
+
+.hamburguesa-button {
+  font-size: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.navbar-cart {
+  display: flex;
+  align-items: center;
+}
+
+.cart-icon img {
+  height: 30px;
+}
+
+/* Añadimos estilos para el botón de notificaciones */
+.navbar-notifications {
+  display: flex;
+  align-items: center;
+  margin-right: 10px; /* Ajusta el margen según necesites */
+}
+
+.notification-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.notification-icon {
+  height: 24px; /* Ajusta el tamaño según necesites */
+  width: auto;
+}
+
+.notification-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+/* Estilos para pantallas mayores a 768px */
+@media (min-width: 769px) {
+  .navbar {
+    display: none; /* Oculta la barra en pantallas mayores a 768px */
+  }
+}
+
+/* Estilos para el menú desplegable */
+.menu {
+  position: fixed;
+  top: 60px;
+  left: 4px;
+  width: 93%;
+  background-color: #333; /* Fondo oscuro */
+  color: white;
+  padding: 20px;
+  z-index: 999;
+  transition: transform 0.3s ease-in-out;
+}
+
+.perfil-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.perfil-imagen {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.perfil-nombre {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+.perfil-correo {
+  font-size: 14px;
+  color: #ccc; /* Texto del correo en gris claro */
+}
+
+/* Alineación de los botones */
+.menu ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* Permite que los botones ocupen todo el ancho */
+}
+
+.menu ul li {
+  margin-bottom: 15px;
+  width: 100%; /* Asegura que cada elemento de la lista ocupe el 100% del ancho */
+}
+
+.menu ul li button {
+  width: 92%; /* Botones ocupan todo el ancho del menú */
+  padding: 10px;
+  background-color: #444; /* Color de fondo de los botones */
+  border: 1px solid #888; /* Borde alrededor del botón */
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: left; /* Texto alineado a la izquierda */
+  transition: background-color 0.2s;
+}
+
+.menu ul li button:hover {
+  background-color: #555; /* Cambia el color al pasar el ratón */
+}
+
+.menu ul li:last-child button {
+  color: red; /* Botón de cerrar sesión en rojo */
+  border-color: red; /* Borde rojo también */
+}
+
+/* Comportamiento del menú desplegable al hacer scroll */
+.menu {
+  overflow-y: auto; /* Permite que el menú sea scrollable si se excede el tamaño */
+  max-height: calc(100vh - 60px); /* Limita el tamaño del menú al alto de la pantalla menos el tamaño de la barra */
+}
+
+/* Responsive para pantallas menores a 768px */
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+  }
+  .menu {
+    transform: translateX(0);
+  }
+}

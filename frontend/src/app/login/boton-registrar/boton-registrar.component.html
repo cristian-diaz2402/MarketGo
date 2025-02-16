@@ -1,0 +1,8 @@
+<button
+  type="button"
+  class="login-with-google-btn"
+  (click)="signUpWithGoogle()"
+  [disabled]="!isCaptchaValid || isLoading || isOtherButtonDisabled">
+  <span *ngIf="!isLoading">Registrarse con Google</span>
+  <div *ngIf="isLoading" class="loading-spinner"></div>
+</button>

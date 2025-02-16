@@ -1,0 +1,40 @@
+<div class="container" id="container">
+    <div class="background-image"></div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <img src="https://play-lh.googleusercontent.com/1SUrM1X37iYLZrPLSVS6qLqMSz0kisdgLOml1xLVBrUBlQ9dqlEyhM9wlrf0NU5ahmJN=w600-h300-pc0xffffff-pd" alt="Logo de Market Go" class="logo">
+          <h1>BIENVENIDOS A MARKET GO TIENDA DE ABASTOS ALIMENTICIOS EN LÍNEA</h1>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <div class="captcha-container">
+            <app-captcha (captchaValidated)="onCaptchaValidated($event)"></app-captcha>
+          </div>
+          <br>
+          <div class="auth-buttons">
+            <div class="button-up">
+              <app-boton-registrar
+                [isCaptchaValid]="isCaptchaValid"
+                [isOtherButtonDisabled]="isOtherButtonDisabled"
+                (authProcessStarted)="setOtherButtonState(true)"
+                (authProcessEnded)="setOtherButtonState(false)">
+              </app-boton-registrar>
+            </div>
+            <div class="button-down">
+              <app-boton-iniciarsesion
+              [isCaptchaValid]="isCaptchaValid"
+              [isOtherButtonDisabled]="isOtherButtonDisabled"
+              (authProcessStarted)="setOtherButtonState(true)"
+              (authProcessEnded)="setOtherButtonState(false)">
+            </app-boton-iniciarsesion>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer>
+    <p></p>
+  </footer>
+  

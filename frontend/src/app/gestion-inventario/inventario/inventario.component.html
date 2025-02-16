@@ -1,0 +1,77 @@
+<!--inventario.component.html-->>
+<app-barra-admin></app-barra-admin>
+
+<div id="notification" class="notification">
+  <!-- Aquí aparecerán las notificaciones -->
+</div>
+
+<div class="inventory-container">
+  <div class="inventory-header">
+    <h1>Catálogo: {{ selectedCatalog | titlecase }}</h1>
+    <select [(ngModel)]="selectedCatalog" (change)="loadProductsFromCatalog()">
+      <option value="carnes">Carnes</option>
+      <option value="lácteos">Lácteos</option>
+      <option value="aseo_personal">Aseo Personal</option>
+      <option value="bebidas">Bebidas</option>
+      <option value="frutas">Frutas</option>
+      <option value="limpieza">Limpieza</option>
+      <option value="snacks">Snacks</option>
+      <option value="verduras">Verduras</option>
+    </select>
+    <button class="add-product-button" (click)="irAggProd()">Agregar Producto</button>
+  </div>
+
+  <div class="inventory-items">
+    <div class="inventory-item" *ngFor="let item of inventoryItems; let i = index" [attr.data-index]="i">
+      <div class="item-header">
+        <h3>{{ item.nombre }}</h3>
+        <div class="item-actions">
+          <button
+          class="edit-button"
+          (click)="editProduct(item); $event.stopPropagation()">
+          <i class="fa fa-pencil-alt"></i>
+        </button>
+        
+          <button class="remove-button" (click)="openRemoveProductmModal(item); $event.stopPropagation()"><i class="fa fa-trash-alt"></i></button>
+        </div>
+      </div>
+      <div class="item-content">
+        <div class="item-image">
+          <img [src]="item.imagen" alt="{{ item.nombre }}" />
+        </div>
+        <div class="item-details">
+          <p>Unidades: {{ item.quantity }}</p>
+          <p>Precio unitario: ${{ item.precio }}</p>
+          <!-- Añadimos el campo estático IVA -->
+          <p>IVA: {{ item.iva ? 'Sí' : 'No' }}</p>
+        </div>
+      </div>
+      <!-- Solo mostramos la ventana de edición si el producto está en modo edición -->
+      <div class="edit-window" *ngIf="isEditing[item.id]">
+        <div class="quantity-control">
+          <button (click)="decrement(item)" [disabled]="item.quantity <= 1">-</button>
+          <input type="number" [(ngModel)]="item.quantity" />
+          <button (click)="increment(item)">+</button>
+        </div>
+        <div class="action-buttons">
+          <button (click)="save(item)" [disabled]="!isChanged[item.id]">Guardar</button>
+          <button (click)="discard(item)">Descartar</button>
+        </div>
+      </div>
+        <!-- Modal de confirmación para eliminar un artículo -->
+      <div class="modal-overlay" *ngIf="showRemoveProductConfirmation[item.id]">
+          <div class="modal">
+            <div class="modal-content">
+              <p>¿Estás seguro de que deseas eliminar este artículo?</p>
+              <div class="modal-actions">
+                <button class="btnSI" (click)="confirmRemoveProduct(item)">Sí</button>
+                <button class="btnNO" (click)="cancelRemoveProduct(item)">No</button>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

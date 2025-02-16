@@ -1,0 +1,140 @@
+<div class="product-edit-wrapper">
+  <div class="product-edit-container">
+    <div class="edit-header">
+      <h2>Edición del producto</h2>
+    </div>
+
+    <div class="edit-content">
+      <div class="grid-form">
+        <!-- ID Field -->
+        <div class="form-field">
+          <label for="productId">ID</label>
+          <input id="productId" type="text" [(ngModel)]="product.id" class="input-disabled" disabled>
+        </div>
+
+        <!-- Product Name Field -->
+        <div class="form-field full-width">
+          <label for="productName">Nombre del producto</label>
+          <input id="productName" type="text" [(ngModel)]="product.nombre" (ngModelChange)="onInputChange('nombre')"
+            [class.valid]="esValido('nombre')" [class.invalid]="esInvalido('nombre')">
+          <div class="error-message" *ngIf="esInvalido('nombre')">
+            <small *ngIf="errores['nombre']">{{ errores['nombre'] }}</small>
+          </div>
+        </div>
+
+        <!-- Catalog Field -->
+        <div class="form-field">
+          <label for="catalog">Catálogo</label>
+          <select id="catalog" [(ngModel)]="product.catalogo" (ngModelChange)="onInputChange('catalogo')">
+            <option value="carnes">Carnes</option>
+            <option value="lácteos">Lácteos</option>
+            <option value="frutas">Frutas</option>
+            <option value="bebidas">Bebidas</option>
+            <option value="limpieza">Limpieza</option>
+            <option value="aseo_personal">Aseo Personal</option>
+            <option value="snacks">Snacks</option>
+            <option value="verduras">Verduras</option>
+          </select>
+        </div>
+        <!-- Quantity Field -->
+        <div class="form-field">
+          <label for="quantity">Cantidad</label>
+          <input id="quantity" type="text" [(ngModel)]="product.cantidad" (ngModelChange)="onInputChange('cantidad')"
+            [class.valid]="esValido('cantidad')" [class.invalid]="esInvalido('cantidad')">
+          <div class="error-message" *ngIf="esInvalido('cantidad')">
+            <small *ngIf="errores['cantidad']">{{ errores['cantidad'] }}</small>
+          </div>
+        </div>
+
+        <!-- Unit Price Field -->
+        <div class="form-field">
+          <label for="price">Precio unitario</label>
+          <input id="price" type="number" [(ngModel)]="product.precio" (ngModelChange)="onInputChange('precio')"
+            [class.valid]="esValido('precio')" [class.invalid]="esInvalido('precio')">
+          <div class="error-message" *ngIf="esInvalido('precio')">
+            <small *ngIf="errores['precio']">{{ errores['precio'] }}</small>
+          </div>
+        </div>
+
+        <!-- Available Units Field -->
+        <div class="form-field">
+          <label for="units">Unidades disponibles</label>
+          <input id="units" type="number" [(ngModel)]="product.unidades" (ngModelChange)="onInputChange('unidades')"
+            [class.valid]="esValido('unidades')" [class.invalid]="esInvalido('unidades')">
+          <div class="error-message" *ngIf="esInvalido('unidades')">
+            <small *ngIf="errores['unidades']">{{ errores['unidades'] }}</small>
+          </div>
+        </div>
+
+        <!-- Description Field -->
+        <div class="form-field full-width">
+          <label for="description">Descripción</label>
+          <textarea id="description" rows="2" [(ngModel)]="product.descripcion"
+            (ngModelChange)="onInputChange('descripcion')" [class.valid]="esValido('descripcion')"
+            [class.invalid]="esInvalido('descripcion')">
+          </textarea>
+          <div class="error-message" *ngIf="esInvalido('descripcion')">
+            <small *ngIf="errores['descripcion']">{{ errores['descripcion'] }}</small>
+          </div>
+        </div>
+
+        <!-- Image URL Field -->
+        <div class="form-field full-width">
+          <label for="imageUrl">Imagen</label>
+          <div class="image-input-container">
+            <input id="imageUrl" type="text" [(ngModel)]="product.imagen" (ngModelChange)="onInputChange('imagen')"
+              [class.valid]="esValido('imagen')" [class.invalid]="esInvalido('imagen')">
+            <div class="error-message" *ngIf="esInvalido('imagen')">
+              <small *ngIf="errores['imagen']">{{ errores['imagen'] }}</small>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- IVA Field -->
+        <div class="form-field">
+          <label for="iva">IVA</label>
+          <select id="iva" [(ngModel)]="product.iva" (ngModelChange)="onInputChange('iva')">
+            <option [value]="true">Sí</option>
+            <option [value]="false">No</option>
+          </select>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="edit-footer">
+      <button class="btn-descartar" type="button" (click)="onCancel()">
+        <i class="fas fa-times"></i>
+        Descartar
+      </button>
+      <button class="btn-guardar" type="button" [disabled]="!puedeGuardar()" (click)="onSave()">
+        <i class="fas fa-save"></i>
+        Guardar
+      </button>
+    </div>
+    <!-- Modal de confirmación para guardar -->
+<div class="modal" [class.show]="mostrarModalGuardar" (click)="cerrarModal($event)">
+  <div class="modal-content" >
+    <h3>Confirmación</h3>
+    <p>¿Estás seguro de que deseas guardar los cambios?</p>
+    <div class="modal-actions">
+      <button class="btn-cancelar" type="button" (click)="cerrarModalGuardar()">Cancelar</button>
+      <button class="btn-confirmar" type="button" (click)="confirmarGuardar()">Guardar</button>
+    </div>
+  </div>
+</div>
+    <!-- Modal de confirmación -->
+    <div class="modal" [class.show]="mostrarModal" (click)="cerrarModal($event)">
+      <div class="modal-content">
+        <h3>Confirmación</h3>
+        <p>Hay cambios sin guardar. ¿Estás seguro de que deseas descartar los cambios?</p>
+        <div class="modal-actions">
+          <button class="btn-cancelar" type="button" (click)="cerrarModal()">Cancelar</button>
+          <button class="btn-confirmar" type="button" (click)="confirmarCancelar()">Descartar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

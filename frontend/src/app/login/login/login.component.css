@@ -1,0 +1,165 @@
+/* Estilos base para móviles */
+* {
+    font-family: Arial, sans-serif;
+  }
+  
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative; 
+}
+
+.background-image {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://www.gestiopolis.com/wp-content/uploads/2005/11/2808759067_de40a54f47_b.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(2px); 
+    z-index: -1; 
+}
+
+.overlay-container {
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    min-height: 350px;
+    background-color: rgba(255, 255, 255, 0.9); 
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); 
+    flex-direction: column;
+}
+
+.overlay {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.overlay-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.overlay-left {
+    background-color: rgba(255, 255, 255, 0.0); 
+    color: #000000; 
+}
+
+.overlay-right {
+    background-color: rgba(255, 75, 43); 
+    color: #FFFFFF;
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.logo {
+    width: 120px;
+    margin-bottom: 15px;
+}
+
+.auth-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.button-up,
+.button-down {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.button-up {
+    margin-bottom: 20px; /* Espacio entre el botón de arriba y el de abajo */
+}
+
+.button-down {
+    margin-bottom: 20px; /* Espacio adicional si es necesario */
+}
+
+.captcha-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+
+/* Estilos para resoluciones de escritorio */
+@media screen and (min-width: 1024px) {
+    .container {
+        padding: 0;
+    }
+
+    .overlay-container {
+        display: flex;
+        width: 100%;
+        max-width: 800px;
+        height: 500px;
+        flex-direction: row;
+    }
+
+    .overlay {
+        flex-direction: row;
+    }
+
+    .overlay-panel {
+        width: 50%;
+        padding: 30px;
+    }
+
+    .overlay-left {
+        order: 1;
+    }
+
+    .overlay-right {
+        order: 2;
+    }
+
+    h1 {
+        font-size: 28px;
+        margin-bottom: 25px;
+    }
+
+    .logo {
+        width: 400px;
+        margin-bottom: 20px;
+        opacity: 0.6;
+    }
+
+    .auth-buttons {
+        max-width: 300px;
+    }
+
+    .button-up {
+        margin-bottom: 25px; /* Espacio mayor en escritorio */
+    }
+
+    .button-down {
+        margin-bottom: 25px;
+    }
+
+
+}

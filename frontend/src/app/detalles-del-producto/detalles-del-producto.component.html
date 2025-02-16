@@ -1,0 +1,65 @@
+<body>
+  <!-- Barra de navegación -->
+  <app-hamburguesa></app-hamburguesa>
+  <app-barra-navegacion></app-barra-navegacion> <!-- Aquí va tu componente de barra de navegación -->
+  <div id="notification" class="notification">
+    <!-- Aquí aparecerán las notificaciones -->
+  </div>
+  
+  <!-- Contenedor principal -->
+  <div class="product-container">
+    <!-- Panel Izquierdo -->
+    <div class="left-panel">
+      <div class="image-box">
+        <img [src]="imageUrl" alt="{{ product?.nombre }}" />
+      </div>
+      <div class="description">
+        <h3>Descripción</h3>
+        <p>
+          {{ product?.descripcion }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Panel Derecho -->
+    <div class="right-panel">
+      <h2>{{ product?.nombre }}</h2>
+      <div class="product-details">
+        <label for="cantidad">Cantidad:</label>
+        <div class="data-box">
+          <span id="cantidad">{{ product?.cantidad }}</span>
+        </div>
+      </div>
+      <div class="product-details">
+        <label for="precio">Precio unitario:</label>
+        <div class="data-box">
+          <span id="precio">{{ product?.precio }}</span>
+        </div>
+      </div>
+      <div class="product-details">
+        <label for="precio-iva">Precio unitario + IVA:</label>
+        <div class="data-box">
+          <span id="precio-iva">
+            {{ precioIva !== null ? precioIva : 'No IVA' }}
+          </span>
+        </div>
+      </div>
+      
+      <div class="units">
+        <label for="unit-input" class="units-label">Unidades</label>
+        <div class="units-control">
+          <button class="decrease-btn" (click)="decrementar()">-</button>
+          <input type="number" class="unit-input" [value]="cantidad" [readonly]="true">
+          <button class="increase-btn" (click)="incrementar()" [disabled]="botonDeshabilitado">+</button>
+        </div>
+      </div>             
+      <button 
+      class="cart-btn position-absolute top-0 end-0 d-flex align-items-center justify-content-center" 
+      (click)="addToCart(product); $event.stopPropagation()">
+      Agregar al carrito de compras
+    </button>   
+      <button class="cart-btn" (click)="goBack()">Regresar</button>
+    </div>
+  </div>
+</body>
+

@@ -1,0 +1,114 @@
+<app-hamburguesa></app-hamburguesa>
+<app-barra-navegacion></app-barra-navegacion>
+
+<div id="notification" class="notification">
+  <!-- Aquí aparecerán las notificaciones -->
+</div>
+
+<div class="cart-container">
+  <div class="cart-header">
+    <h2>Carrito de Compras</h2>
+  </div>
+
+  <div class="cart-items">
+    <div class="cart-item" *ngFor="let item of cartItems; let i = index" (click)="$event.stopPropagation()" [attr.data-index]="i">
+      <div class="item-image">
+        <img [src]="item.imagen" alt="{{ item.nombre }}" />
+      </div>
+      <div class="item-details">
+        <h3>{{ item.nombre }}</h3>
+
+        <!-- Icono de lápiz y botón de eliminar (visible solo cuando no está en edición) -->
+        <div *ngIf="!isEditing[item.id]" class="edit-remove-buttons">
+          <div class="item-info">
+            <span class="item-units">Unidades: {{ item.quantity }}</span>
+            <span class="item-price-unit">Precio unitario: ${{ item.precio | number:'1.2-2' }}</span>
+          </div>
+          <i class="fa fa-pencil-alt" (click)="toggleEdit(item); $event.stopPropagation()" ></i>
+          <button class="remove-item" (click)="openRemoveItemModal(item); $event.stopPropagation()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 64 64" fill="white">
+              <path d="M19.186,16.493l0,-1.992c0.043,-3.346 2.865,-6.296 6.277,-6.427c3.072,-0.04 10.144,-0.04 13.216,0c3.346,0.129 6.233,3.012 6.277,6.427l0,1.992l9.106,0l0,4l-4.442,0l0,29.11c-0.043,3.348 -2.865,6.296 -6.278,6.428c-7.462,0.095 -14.926,0.002 -22.39,0.002c-3.396,-0.044 -6.385,-2.96 -6.429,-6.43l0,-29.11l-4.443,0l0,-4l9.106,0Zm26.434,4l-27.099,0c-0.014,9.72 -0.122,19.441 0.002,29.16c0.049,1.25 1.125,2.33 2.379,2.379c7.446,0.095 14.893,0.095 22.338,0c1.273,-0.049 2.363,-1.163 2.38,-2.455l0,-29.084Zm-4.701,-4c-0.014,-0.83 0,-1.973 0,-1.973c0,0 -0.059,-2.418 -2.343,-2.447c-3.003,-0.039 -10.007,-0.039 -13.01,0c-1.273,0.049 -2.363,1.162 -2.38,2.454l0,1.966l17.733,0Z" style="fill-rule:nonzero;"/>
+            </svg>            
+          </button>    
+        </div>
+
+        <!-- Casilla de cantidad y botones de guardar o descartar (solo visibles cuando está en edición) -->
+        <div *ngIf="isEditing[item.id]" class="item-quantity edit-window">
+          <div class="quantity-control">
+            <button (click)="decrement(item)" [disabled]="isEditing[item.id] && tempQuantity[item.id] <= 1 && !isChanged[item.id]"> - </button>
+            <input type="number" [(ngModel)]="tempQuantity[item.id]" />
+            <button (click)="increment(item)" [disabled]="item.quantity >= item.maxUnits">+</button>
+          </div>
+
+          <!-- Botones de guardar y descartar -->
+          <div class="action-buttons">
+            <button (click)="save(item)" [disabled]="!isChanged[item.id]">Guardar</button>
+            <button (click)="discard(item)">Descartar</button>
+          </div>
+        </div>
+
+        <!-- precio del producto -->
+        <p class="item-price">
+          ${{ (item.precio * item.quantity) * (item.ivaIndicator === 'I' ? 1.15 : 1) | number:'1.2-2' }} 
+          <span *ngIf="item.ivaIndicator === 'I'">I</span>
+        </p>
+      </div>
+
+      <!-- Confirmaciones -->
+      <div *ngIf="showConfirmation[item.id]" class="confirmation-popup">
+        <p>Cambios guardados con éxito.</p>
+        <button (click)="closeConfirmation(item)">OK</button>
+      </div>
+
+      <div *ngIf="showDiscardConfirmation[item.id]" class="confirmation-discard-popup">
+        <p>¿Está seguro que desea descartar los cambios?</p>
+        <button (click)="discardChanges(item)">Sí</button>
+        <button (click)="cancelDiscard(item)">No</button>
+      </div>
+
+      <!-- Modal de confirmación para eliminar un artículo -->
+      <div class="modal-overlay" *ngIf="showRemoveItemConfirmation[item.id]">
+        <div class="modal">
+          <div class="modal-content">
+            <p>¿Estás seguro de que deseas eliminar este artículo?</p>
+            <div class="modal-actions">
+              <button class="btnSI" (click)="confirmRemoveItem(item)">Sí</button>
+              <button class="btnNO" (click)="cancelRemoveItem(item)">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cart-summary">
+    <ul class="summary-list">
+      <li>
+        <span>Subtotal (sin IVA):</span>
+        <span>${{ getSubtotal() | number:'1.2-2' }}</span>
+      </li>
+      <li>
+        <span>15% IVA:</span>
+        <span>${{ getIVA() | number:'1.2-2' }}</span>
+      </li>
+      <li>
+        <span>Total:</span>
+        <span>${{ getTotalPrice() | number:'1.2-2' }}</span>
+      </li>
+    </ul>
+    <button class="checkout-button" [disabled]="cartItems.length === 0" (click)="redirectToCheckout()">Finalizar Compra</button>
+    <button class="checkout-button2" [disabled]="cartItems.length === 0" (click)="confirmClearCart()">Eliminar Todo</button>
+  </div>
+  <div class="modal-overlay" *ngIf="showClearCartConfirmation">
+    <div class="modal" >
+      <div class="modal-content">
+        <div class="modal-header">Confirmación</div>
+        <p>¿Estás seguro de que deseas eliminar todos los productos del carrito?</p>
+        <div class="btnSiNo">
+          <button class="btnSI" (click)="clearCart()">Sí</button>
+          <button class="btnNO" (click)="cancelClearCart()">No</button>
+        </div>
+      </div> 
+    </div>
+  </div>
+</div>

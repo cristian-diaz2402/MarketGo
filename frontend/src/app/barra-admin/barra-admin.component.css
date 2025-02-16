@@ -1,0 +1,335 @@
+/* Estilo para la barra de administración */
+.navbar-admin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #333;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.navbar-logo img {
+  height: 40px;
+}
+
+.navbar-title {
+  font-size: 20px;
+  color: #fff;
+  flex-grow: 1;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.navbar-profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+/* Ajustes específicos para el modal dentro de la barra admin */
+.navbar-profile app-modal {
+  position: absolute;
+  top: 35px;
+  left: -100px;
+  min-width: 200px;
+}
+
+/* Ajustes para que el contenido del modal se vea centrado */
+.navbar-profile app-modal .modal-content {
+  padding: 0;
+  width: 200px;
+  overflow: hidden;
+}
+
+.navbar-profile app-modal .perfil-header {
+  top: 30px;
+  right: -20px; /* Ajusta este valor para mover el modal desde el borde derecho */
+  background-color: orange;
+  border-bottom: 1px solid #8b0202;
+}
+
+.navbar-profile app-modal .perfil-imagen {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* Ajusta estos valores para mover la imagen */
+  margin-left: 67px; /* Mueve la imagen horizontalmente */
+  margin-top: 10px; /* Mueve la imagen verticalmente */
+}
+
+.navbar-profile app-modal .perfil-nombre {
+  margin: 10px 0 5px;
+  font-size: 10px;
+  font-weight: 500;
+  color: #333;
+  margin-left: -20px; /* Mueve la imagen horizontalmente */
+  margin-top: 10px; /* Mueve la imagen verticalmente */
+}
+
+.navbar-profile app-modal .perfil-opciones {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+}
+
+/* Asegúrate de que los botones dentro del modal se vean correctamente */
+.navbar-profile app-modal .perfil-opciones button {
+  width: 100%;
+  text-align: left;
+  padding: 12px 15px;
+  background-color: transparent;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.navbar-profile app-modal .perfil-opciones button:hover {
+  background-color: #ce8787;
+}
+
+/* Ajustes específicos para el botón de cerrar sesión dentro del modal */
+.navbar-profile app-modal .cerrar-sesion {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-profile app-modal .cerrar-sesion:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-profile app-modal .cerrar-sesion:active {
+  background-color: #e74c3c;
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.navbar-button:hover {
+  color: #ccc;
+}
+
+.hamburger-menu {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
+  display: none;
+}
+
+/* Ajusta el ancho del menú hamburguesa al ancho de la barra admin */
+.hamburger-content {
+  display: none;
+  flex-direction: column;
+  background-color: #333; /* Fondo oscuro para el menú */
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 100%; /* Ancho completo */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto; /* Permite scroll si el contenido excede la altura de la pantalla */
+  max-height: calc(100vh - 60px); /* Limita el tamaño del menú al alto de la pantalla menos el tamaño de la barra */
+}
+
+.hamburger-content.open {
+  display: flex;
+}
+
+.perfil-header {
+  text-align: center;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.perfil-imagen {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.perfil-nombre {
+  color: #fff;
+  font-size: 22px;
+  margin: 5px 0;
+}
+
+.perfil-email {
+  color: #fff;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+/* Asegúrate de que todos los botones en el menú hamburguesa tengan el mismo estilo */
+.perfil-opciones button {
+  width: 92%; /* Botones ocupan el 92% del ancho del menú */
+  padding: 10px;
+  background-color: #444; /* Color de fondo de los botones */
+  border: 1px solid #888; /* Borde alrededor del botón */
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: left; /* Texto alineado a la izquierda */
+  transition: background-color 0.2s; /* Transición suave al pasar el ratón */
+  margin: 0 auto 15px; /* Centra el botón y añade margen inferior */
+}
+
+.perfil-opciones button:hover {
+  background-color: #555; /* Cambia el color al pasar el ratón */
+}
+
+/* Específico para el botón de cerrar sesión en el menú hamburguesa */
+.cerrar-sesion {
+  color: red; /* Texto en rojo */
+  border-color: red; /* Borde en rojo */
+}
+
+/* Estilo específico para el botón de gestión de usuarios en modo normal */
+.gestion-roles-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.gestion-roles-button:hover {
+  background-color: #218838;
+}
+
+/* Ocultar el botón en modo hamburguesa en pantallas pequeñas */
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: block;
+  }
+
+  .navbar-profile {
+    display: none;
+  }
+
+  .navbar-title {
+    font-size: 16px;
+  }
+  .gestion-roles-button.desktop-only {
+    display: none;
+  }
+  
+  .gestion-roles-button.mobile-only {
+    display: block;
+  }
+}
+
+/* Ocultar el botón móvil en pantallas grandes */
+@media (min-width: 769px) {
+  .gestion-roles-button.mobile-only {
+    display: none;
+  }
+}
+
+/* Asegúrate de que los botones estén distribuidos uniformemente en la barra de navegación */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Distribución de botones en el menú hamburguesa */
+.perfil-opciones {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Espacio entre los botones */
+}
+
+/* Estilo para la campana de notificaciones */
+.navbar-notifications {
+  position: relative;
+  margin-right: 20px;
+}
+
+.notification-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.notification-icon {
+  height: 30px;
+}
+
+.notification-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+/* Ajustes para el modal de notificaciones en dispositivos móviles */
+@media (max-width: 768px) {
+  .notification-button.mobile-only {
+    display: block;
+    margin-bottom: 15px;
+  }
+  
+  .notification-button.desktop-only {
+    display: none;
+  }
+}
+
+/* Ajustes para el modal de notificaciones en dispositivos de escritorio */
+@media (min-width: 769px) {
+  .notification-button.mobile-only {
+    display: none;
+  }
+  
+  .notification-button.desktop-only {
+    display: block;
+  }
+}

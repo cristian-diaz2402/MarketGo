@@ -1,0 +1,104 @@
+.modal {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  top: 5px; /* Ajusta según la posición del botón de perfil */
+  right: 10px; /* Apegado al borde derecho, justo debajo del botón */
+  background-color: #a7a7a7;
+  border-radius: 10px; /* Bordes más redondeados */
+  width: 200px; /* Un poco más estrecho */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombras suaves */
+  overflow: hidden;
+  animation: fadeIn 0.3s ease-out;
+  padding: 0;
+}
+
+.modal.open {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.modal-content {
+  padding: 0;
+}
+
+.perfil-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: orange; /* Fondo ligero en el encabezado */
+  padding: 15px 10px;
+  border-bottom: 1px solid #8b0202;
+}
+
+.perfil-nombre {
+  margin: 10px 0 5px;
+  font-size: 10px;
+  font-weight: 500;
+  color: #333;
+}
+
+.perfil-imagen {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-opciones {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+}
+
+.perfil-opciones button {
+  width: 100%;
+  text-align: left;
+  padding: 12px 15px;
+  background-color: transparent;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.perfil-opciones button:hover {
+  background-color: #ce8787;
+}
+
+.cerrar-sesion {
+  background-color: #e74c3c;  /* Rojo más intenso */
+  color: white;  /* Texto en blanco */
+  border: none;
+  cursor: pointer;
+  padding: 12px 20px;
+  font-size: 16px;  /* Aumentamos el tamaño de la fuente */
+  font-weight: 600;  /* Font-weight más grueso para mayor énfasis */
+  border-radius: 8px;  /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Sombra suave */
+  transition: all 0.3s ease-in-out;  /* Transición suave para todos los efectos */
+}
+
+.cerrar-sesion:hover {
+  background-color: #c0392b;  /* Rojo más oscuro al pasar el cursor */
+  transform: translateY(-2px);  /* Efecto de desplazamiento hacia arriba */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);  /* Aumentamos la sombra para el hover */
+}
+
+.cerrar-sesion:active {
+  background-color: #e74c3c;  /* El mismo rojo al hacer clic */
+  transform: translateY(0);  /* El botón vuelve a su posición original */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Sombra más suave al hacer clic */
+}
+
